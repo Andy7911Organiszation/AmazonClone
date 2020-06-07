@@ -60,7 +60,37 @@ export default class Nav extends Component {
   </div>
   
 </nav> 
-                
+<nav class="navbar is-dark" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+   
+
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="column is-one-quarter">
+    <div class="navbar-start">
+      <a class="navbar-item">
+        Deals Store
+      </a>
+
+      <a class="navbar-item">
+        Best Sellers
+      </a>
+
+        <a class="navbar-item">
+         New Realeases
+        </a>
+        <a class="navbar-item">
+          Gift Ideas
+        </a>
+        
+
+    </div>
+    </div>
+</nav>        
             </div>
         )
     }
