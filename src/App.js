@@ -1,15 +1,17 @@
 import React from 'react';
 
 import Nav from "./component/Nav";
-import Inventory from "./component/mainInventory";
+import Inventory from "./component/MainInventory";
+import Footer from './component/Footer';
 
 function App() {
   return (
-    <div className="App">
-     
+    <div>
+     <div>
         <Nav></Nav>
         <Inventory></Inventory>
-      
+        <Footer></Footer>
+        </div>
     </div>
   );
 }
