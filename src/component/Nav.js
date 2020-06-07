@@ -19,22 +19,7 @@ export default class Nav extends Component {
   </div>
 
   <div id="navbarBasicExample" class="navbar-menu">
-      <div class="column is-one-quarter">
-    <div class="navbar-start">
-      <a class="navbar-item">
-        Home
-      </a>
-
-      <a class="navbar-item">
-        Documentation
-      </a>
-
-        <a class="navbar-item">
-          More
-        </a>
-
-    </div>
-    </div>
+   
     <div class="column is-half" >
     <div class="field has-addons">
   <p class="control">
@@ -56,6 +41,22 @@ export default class Nav extends Component {
   </p>
 </div>
 </div>
+<div class="column is-one-quarter">
+    <div class="navbar-end">
+      <a class="navbar-item">
+        Account & List
+      </a>
+
+      <a class="navbar-item">
+        Return & order
+      </a>
+
+        <a class="navbar-item">
+          Try prime
+        </a>
+
+    </div>
+    </div>
    
   </div>
   
