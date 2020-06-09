@@ -61,7 +61,7 @@ export default class Nav extends Component {
   </div>
   
 </nav> 
-<nav class="navbar is-dark" role="navigation" aria-label="main navigation">
+<nav class="navbar is-dark" role="navigation" aria-label="main navigation" style={{marginBottom:100}}>>
   <div class="navbar-brand">
    
 
