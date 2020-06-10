@@ -4,7 +4,7 @@ export default class Footer extends Component {
     render() {
         return (
             <div>
-                <footer class="footer">
+                <footer class="footer" style={{marginTop:100}}>
                     <div class='has-text-centered'> <h2>Back to top</h2></div>
                     <div class="content has-text-centered">
                     <div class="columns is-multiline is-mobile ">
