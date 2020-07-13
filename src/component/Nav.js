@@ -20,7 +20,7 @@ export default class Nav extends Component {
 
   <div id="navbarBasicExample" class="navbar-menu">
    
-    <div class="column is-half" >
+  <div class="column is-two-fifths" >
     <div class="field has-addons">
   <p class="control">
     <span class="select">
@@ -41,7 +41,7 @@ export default class Nav extends Component {
   </p>
 </div>
 </div>
-<div class="column is-one-quarter">
+<div class="column">
     <div class="navbar-end">
       <a class="navbar-item">
         Account & List
@@ -55,13 +55,20 @@ export default class Nav extends Component {
           Try prime
         </a>
 
+        <a class="navbar-item">
+          Register
+        </a>
+        <a class="navbar-item">
+          Login
+        </a>
+
     </div>
     </div>
    
   </div>
   
 </nav> 
-<nav class="navbar is-dark" role="navigation" aria-label="main navigation" style={{marginBottom:100}}>>
+<nav class="navbar is-dark" role="navigation" aria-label="main navigation" style={{marginBottom:100}}>
   <div class="navbar-brand">
    
 
