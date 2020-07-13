@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-export class mainInventory extends Component {
+export class MainInventory extends Component {
     render() {
         return (
             <div>
@@ -35,4 +35,4 @@ export class mainInventory extends Component {
     }
 }
 
-export default mainInventory
+export default MainInventory
