@@ -6,6 +6,7 @@ import Footer from './component/Footer';
 
 // Pages
 import Login_Page from './component-FullPage/Login_Page';
+import Registration_Page from './component-FullPage/Registration_Page';
 
 
 // React routing for 
@@ -28,6 +29,9 @@ function App() {
           </Route>
           <Route path="/Login" exact>
             <Login_Page />
+          </Route>
+          <Route path="/Register" exact>
+            <Registration_Page />
           </Route>
         </Switch>
         
