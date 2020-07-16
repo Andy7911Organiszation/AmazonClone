@@ -1,7 +1,9 @@
 import React from 'react';
 import '../style/login-registration.css';
 
-// This class is render without a navbar
+import { Link } from 'react-router-dom';
+
+// This function is render without a navbar
 export default function Login_Page ()  {
       
         
@@ -46,7 +48,7 @@ export default function Login_Page ()  {
                     <div className="field">  
                         <p id="facebook" className="control">
                             <a className="button is-fullwidth c-facebook-background-color">
-                                <i className="fa fa-facebook mr-2"></i>
+                                <i className="fab fa-facebook mr-2"></i>
                                 Login With Facebook
                             </a>
                         </p>
@@ -54,7 +56,7 @@ export default function Login_Page ()  {
     
                     <div className="columns">
                         <a href="#" className="column has-text-centered">Forgot Password</a>
-                        <a href="#" className="column has-text-centered">Not a member : Sign Up</a>
+                        <Link to="Register" className="column has-text-centered">Not a member : Sign Up</Link>
                     </div>
                 </div>
         
