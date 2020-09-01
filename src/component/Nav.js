@@ -34,7 +34,7 @@ export default class Nav extends Component {
                       </span>
                     </p>
                     <p className="control is-expanded">
-                      <input className="input" type="text" placeholder="Amount of money"/>
+                      <input className="input" type="text" placeholder="Search Item"/>
                     </p>
                     <p className="control">
                       <a className="button is-warning">
@@ -79,7 +79,7 @@ export default class Nav extends Component {
                   </a>
                 </div>
 
-                <div className="column is-one-quarter">
+                <div className="column is-half">
                   <div className="navbar-start">
                     <a className="navbar-item">
                       Deals Store

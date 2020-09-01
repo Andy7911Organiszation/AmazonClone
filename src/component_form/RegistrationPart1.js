@@ -1,41 +1,19 @@
-import React, {useState} from 'react';
-
-import { FontAwesome } from '@fortawesome/fontawesome-free';
+import React, { useState } from 'react';
 
 import { Link } from 'react-router-dom';
 
-// This page is render without a header
-export default function Registration_Page () {
 
-    const [is_nextButtonClicked,set_isNextButtonClicked] = useState(false);
-    const [is_previousButtonClicked,set_isPreviousButtonClicked] = useState(false);
-    const [is_firstFormSectionVisible, set_isFirstFormSectionVisible] = useState(true);
-    const [is_secondFormSectionVisibble, set_isSecondFormSectionVisible] = useState(false);
-
-    function changeRegisterFormToSecondPage () {
-        set_isFirstFormSectionVisible(false);
-        set_isSecondFormSectionVisible(true);
-        console.log("Change is happening");
-    }
-
-    
+export default function RegistrationPart1 () {
 
     return (
-        <section id="form-section">
-            
-        <form  className="column is-6 is-offset-3 px-0 pt-0 pb-5">
-            <div className="field pb-5">
-                <h1 className="title is-3 has-background-primary is-large c-center">Register</h1>
-            </div>
-
-            <div id="custom" className="is-ligth px-3">
+        <div id="custom" className="is-ligth px-3">
                <div className="columns field">
                     <div className="column">
                         <label className="label">First Name</label>
                         <div className="control">
                             <input className="input" name="firstname"type="text" placeholder="First Name" />
                         </div>
-                        <p className="help pl-1">Help Text</p>
+                        <p className="help pl-1"></p>
                     </div>
                     
                     <div className="column">
@@ -102,13 +80,13 @@ export default function Registration_Page () {
                     </div>
                 </div>
            
-                <div id="buttons" className="field has-addons pt-4  columns">
+                <div id="buttons" className="field has-addons pt-4 columns">
                     <p className="control column ">
                         <a className="button is-ligth is-fullwidth">
                             Cancel
                         </a>    
                     </p>
-                    <p id="btn_next" className="control column" onClick={changeRegisterFormToSecondPage}>
+                    <p id="btn_next" className="control column">
                         <a className="button is-primary has-icons-right is-fullwidth">
                             Next
                         </a>
@@ -119,27 +97,6 @@ export default function Registration_Page () {
                     <Link to="/Login">Already a memeber Sign In</Link>
                 </div>
             </div>
-            <div id="custom-2" className="is-ligth px-3">
-                <div className="columns field">
-                    <div className="column">
-                        <label className="label">Username</label>
-                        <div className="control">
-                            <input type="text" className="input" placeholder="Input Username"/>
-                        </div>
-                        <p className="help pl-1">Help Text</p>
-                    </div>
-                    <div className="column">
-                        <label className="label">Phone Number</label>
-                        <div className="control">
-                            <input type="text" className="input" placeholder="(514)-333-3333"/>
-                        </div>
-                        <p className="help pl-1">Help Text</p>
-                    </div>
-                </div>
-            </div>
-
-        </form>
-                    
-    </section>
-    );
+ 
+    )
 }
