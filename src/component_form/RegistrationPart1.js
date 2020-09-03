@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 
-export default function RegistrationPart1 () {
+export default function RegistrationPart1 (props) {
 
     return (
         <div id="custom" className="is-ligth px-3">
@@ -86,7 +86,7 @@ export default function RegistrationPart1 () {
                             Cancel
                         </a>    
                     </p>
-                    <p id="btn_next" className="control column">
+                    <p id="btn_next" className="control column" onClick={props.changeToSecondForm}>
                         <a className="button is-primary has-icons-right is-fullwidth">
                             Next
                         </a>
