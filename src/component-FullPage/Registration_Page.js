@@ -12,15 +12,18 @@ export default function Registration_Page () {
     const [is_nextButtonClicked,set_isNextButtonClicked] = useState(false);
     const [is_previousButtonClicked,set_isPreviousButtonClicked] = useState(false);
     const [is_firstFormSectionVisible, set_isFirstFormSectionVisible] = useState(true);
-    const [is_secondFormSectionVisibble, set_isSecondFormSectionVisible] = useState(false);
+    const [is_secondFormSectionVisible, set_isSecondFormSectionVisible] = useState(false);
 
 
 
     const [firstName,setFirstName] = useState();
     const [lastName,setLastName] = useState();
+    const [emailAdress,setEmailAdress] = useState();
+
 
     function changeRegisterFormToSecondPage () {
-        //
+        // Validate Entry first before changing to second Form
+
         set_isFirstFormSectionVisible(false);
         set_isSecondFormSectionVisible(true);
         console.log("Change form to first Page");
@@ -47,7 +50,8 @@ export default function Registration_Page () {
             <div className="field pb-5">
                 <h1 className="title is-3 has-background-primary is-large c-center">Register</h1>
             </div>
-            {/* Setting which form section is visible 
+            {/*
+              Setting which form section is visible 
                 Ternany Operator 
                 const componentToRender =  (is_firstFormSectionVisiblle) ? <RegistrationPart1 /> : null
              */}
@@ -55,7 +59,12 @@ export default function Registration_Page () {
                 is_firstFormSectionVisible ?  <RegistrationPart1 changeToSecondForm={changeRegisterFormToSecondPage} /> : null
             }
             {
-                is_secondFormSectionVisibble? <RegistrationPart2 changeToFirstForm= {() => changeRegisterFormToSecondPage}/> : null
+                is_secondFormSectionVisible? 
+                    <RegistrationPart2 
+                        changeToFirstForm= {changeRegisterFormToFirstPage}
+                        onSubmitSecondForm= {() => null} 
+                    />
+                        : null
             }
         </form>
                     

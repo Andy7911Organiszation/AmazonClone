@@ -31,7 +31,7 @@ export default function Login_Page ()  {
                     </div>
                     <div className="field">
                         <label className="checkbox">
-                            <input type="checkbox" />
+                            <input class="mr-1" type="checkbox" />
                             Remember Me
                         </label>
                     </div>
