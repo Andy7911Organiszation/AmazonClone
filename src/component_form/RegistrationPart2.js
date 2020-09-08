@@ -45,7 +45,7 @@ export default function RegistrationPart2 (props) {
                     <div className="column">
                         <label className="label has-text-centered">Adress</label>
                         <div class="control has-icons-left">
-                            <input class="input" type="text" />
+                            <input class="input" type="text" placeholder="3800 Sherbrooke St E, Montreal, Quebec H1X 2A2" />
                             <span class="icon is-small is-left">
                                 <i class="fa fa-home"></i>
                             </span>

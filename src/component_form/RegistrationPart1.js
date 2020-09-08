@@ -5,23 +5,37 @@ import { Link } from 'react-router-dom';
 
 export default function RegistrationPart1 (props) {
 
+    const [firstName_HelpText, setFirstName_HelpText] = useState();
+    const [lastName_HelpText,setLastName_HelpText] = useState();
+
+    const REGEX_NAME = /^[a-zA-Z]+$/;
+    function onFirstNameChange(e) {
+        let help_MessageFirstName = (!e.target.value.match(REGEX_NAME))? "Please Enter a Valid Name !!" : "";
+        setFirstName_HelpText(help_MessageFirstName);
+    }
+
+    function onLastNameChange(e) {
+        let help_MessageLastName = (!e.target.value.match(REGEX_NAME)) ? "Please Enter a Valid Name !!!": "";
+        setLastName_HelpText(help_MessageLastName);
+    }
+
     return (
         <div id="custom" className="is-ligth px-3">
                <div className="columns field">
                     <div className="column">
                         <label className="label">First Name</label>
                         <div className="control">
-                            <input className="input" name="firstname"type="text" placeholder="First Name" />
+                            <input className="input" name="firstname"type="text" placeholder="First Name" onChange={onFirstNameChange} />
                         </div>
-                        <p className="help pl-1"></p>
+                        <p className="help pl-1 errorMessage">{firstName_HelpText}</p>
                     </div>
                     
                     <div className="column">
                         <label className="label">Last Name</label>
                         <div className="control">
-                            <input className="input" type="text" name="lastname" placeholder="Name" />
+                            <input className="input" type="text" name="lastname" placeholder="Name" onChange={onLastNameChange}/>
                         </div>
-                        <p className="help pl-1">Help Text</p>
+                        <p className="help pl-1 errorMessage">{lastName_HelpText}</p>
                     </div>
                 </div>
 

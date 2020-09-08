@@ -9,18 +9,17 @@ import RegistrationPart2 from '../component_form/RegistrationPart2';
 // This page is render without a header
 export default function Registration_Page () {
 
-    const [is_nextButtonClicked,set_isNextButtonClicked] = useState(false);
-    const [is_previousButtonClicked,set_isPreviousButtonClicked] = useState(false);
     const [is_firstFormSectionVisible, set_isFirstFormSectionVisible] = useState(true);
     const [is_secondFormSectionVisible, set_isSecondFormSectionVisible] = useState(false);
-
-
 
     const [firstName,setFirstName] = useState();
     const [lastName,setLastName] = useState();
     const [emailAdress,setEmailAdress] = useState();
-
-
+    const [birthday,setBirthDay] = useState();
+    
+    const REGEX_NAME = /[a-zA-Z]{2,30}/;
+    const REGEX_EMAIL = /[a-zA-Z]{4,}[@]{1}[a-z]{1,20}[.]{1}[a-z][2,10]/
+    const REGEX_PASSWORD = null;
     function changeRegisterFormToSecondPage () {
         // Validate Entry first before changing to second Form
 
@@ -56,7 +55,11 @@ export default function Registration_Page () {
                 const componentToRender =  (is_firstFormSectionVisiblle) ? <RegistrationPart1 /> : null
              */}
             {
-                is_firstFormSectionVisible ?  <RegistrationPart1 changeToSecondForm={changeRegisterFormToSecondPage} /> : null
+                is_firstFormSectionVisible ?  
+                    <RegistrationPart1 
+                        changeToSecondForm={changeRegisterFormToSecondPage} 
+                    /> 
+                        : null
             }
             {
                 is_secondFormSectionVisible? 

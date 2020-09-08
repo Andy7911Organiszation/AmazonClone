@@ -64,6 +64,10 @@ h1 {
     font-weight: bold;
 }
 
+.errorMessage {
+    color: red;
+}
+
 /*
 #custom-2 {
     display: none;
