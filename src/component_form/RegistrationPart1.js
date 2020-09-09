@@ -5,18 +5,27 @@ import { Link } from 'react-router-dom';
 
 export default function RegistrationPart1 (props) {
 
-    const [firstName_HelpText, setFirstName_HelpText] = useState();
-    const [lastName_HelpText,setLastName_HelpText] = useState();
+    // Ascii code for the empty character is &#8193
+    const [firstName_HelpText, setFirstName_HelpText] = useState(" ");
+    const [lastName_HelpText,setLastName_HelpText] = useState(" ");
+    const [emailAdress_HelpText,setEmailAdress_HelpText] = useState(" ");
 
     const REGEX_NAME = /^[a-zA-Z]+$/;
+    const REGEX_EMAILADRESS = /[a-zA-Z0-9-_]{2,30}[@]{1}[a-z]{3,20}[.]{1}[a-z]{0,4}/;
+
     function onFirstNameChange(e) {
-        let help_MessageFirstName = (!e.target.value.match(REGEX_NAME))? "Please Enter a Valid Name !!" : "";
+        let help_MessageFirstName = (!e.target.value.match(REGEX_NAME))? "Please Enter a Valid  First Name !!!" : " ";
         setFirstName_HelpText(help_MessageFirstName);
     }
 
     function onLastNameChange(e) {
-        let help_MessageLastName = (!e.target.value.match(REGEX_NAME)) ? "Please Enter a Valid Name !!!": "";
+        let help_MessageLastName = (!e.target.value.match(REGEX_NAME)) ? "Please Enter a Valid Last Name !!!": " ";
         setLastName_HelpText(help_MessageLastName);
+    }
+
+    function onEmailAdressChange(e) {
+        let help_MessageEmailAdress = (!e.target.value.match(REGEX_EMAILADRESS)) ? "Please Enter a Valid Email Adress !!!" : " ";
+        setEmailAdress_HelpText(help_MessageEmailAdress);
     }
 
     return (
@@ -42,14 +51,14 @@ export default function RegistrationPart1 (props) {
                 <div className="field">
                     <label className="label">Email</label>
                     <div className="control has-icons-left has-icons-right">
-                        <input type="email" name="emailAddress" className='input' placeholder="exemple@gmail.com" />
+                        <input type="email" name="emailAddress" className='input' placeholder="exemple@gmail.com" onChange={onEmailAdressChange} />
                         <span className="icon is-small is-left">
                             <i className="fas fa-envelope"></i>
                         </span>
                         <span className="icon is-small is-right">
                             <i className="fas fa-exclamation-triangle"></i>
                         </span>
-                        <p className="help pl-1">Help Text</p>
+                        <p className="help pl-1 errorMessage">{emailAdress_HelpText}</p>
                     </div>
                 </div>
                 <div id="birthday" className="field">
