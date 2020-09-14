@@ -4,32 +4,32 @@ export class MainInventory extends Component {
     render() {
         return (
             <div >
-                <div class="columns is-multiline is-mobile">
-                    <div class="column is-one-quarter">
+                <div className="columns is-multiline is-mobile">
+                    <div className="column is-one-quarter">
                         <img src="http://placehold.it/300x300" ></img>
                     </div>
-                    <div class="column is-one-quarter">
+                    <div className="column is-one-quarter">
                         <img src="http://placehold.it/300x300" ></img>
                     </div>
-                    <div class="column is-one-quarter">
+                    <div className="column is-one-quarter">
                         <img src="http://placehold.it/300x300" ></img>
                     </div>
-                    <div class="column is-one-quarter">
+                    <div className="column is-one-quarter">
                         <img src="http://placehold.it/300x300" ></img>
                     </div>
                 </div>
 
-                <div class="columns is-multiline">
-                    <div class="column is-one-quarter">
+                <div className="columns is-multiline">
+                    <div className="column is-one-quarter">
                         <img src="http://placehold.it/300x300" ></img>
                     </div>
-                    <div class="column is-one-quarter">
+                    <div className="column is-one-quarter">
                         <img src="http://placehold.it/300x300" ></img>
                     </div>
-                    <div class="column is-one-quarter">
+                    <div className="column is-one-quarter">
                         <img src="http://placehold.it/300x300" ></img>
                         </div>
-                    <div class="column is-one-quarter">
+                    <div className="column is-one-quarter">
                         <img src="http://placehold.it/300x300" ></img>
                     </div>
                                 
