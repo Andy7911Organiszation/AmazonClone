@@ -9,6 +9,7 @@ export default function RegistrationPart1 (props) {
     const [firstName_HelpText, setFirstName_HelpText] = useState(" ");
     const [lastName_HelpText,setLastName_HelpText] = useState(" ");
     const [emailAdress_HelpText,setEmailAdress_HelpText] = useState(" ");
+    const [birthday_HelpText,setBirthday_HelpText] = useState(" ");
 
     const REGEX_NAME = /^[a-zA-Z]+$/;
     const REGEX_EMAILADRESS = /[a-zA-Z0-9-_]{2,30}[@]{1}[a-z]{3,20}[.]{1}[a-z]{0,4}/;
@@ -34,7 +35,7 @@ export default function RegistrationPart1 (props) {
                     <div className="column">
                         <label className="label">First Name</label>
                         <div className="control">
-                            <input className="input" name="firstname"type="text" placeholder="First Name" onChange={onFirstNameChange} />
+                            <input className="input" name="firstname" type="text" placeholder="First Name" onChange={onFirstNameChange} />
                         </div>
                         <p className="help pl-1 errorMessage">{firstName_HelpText}</p>
                     </div>
@@ -101,6 +102,7 @@ export default function RegistrationPart1 (props) {
                             </span>
                         </p>
                     </div>
+                    <p className="help p1-1 errorMessage">{birthday_HelpText}</p>
                 </div>
            
                 <div id="buttons" className="field has-addons pt-4 columns">
