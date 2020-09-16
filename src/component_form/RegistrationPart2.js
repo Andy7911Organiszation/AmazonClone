@@ -10,9 +10,11 @@ export default function RegistrationPart2 (props) {
     const [address_HelpText,setAdress_HelpText] = useState(" ");
     const [is_TermsAndConditionsAccepted, set_IsTermsAndCondidtionsAccepted] = useState(false);
 
+    const [password, set_Password] = useState("");
+
     const REGEX_USERNAME = /\w{5,20}/;
     const REGEX_PHONE_NUMBER = /^[(]{0,1}(?=\d){10}(\d{3})(?:\)-|-){0,1}(\d{3})(?:-){0,1}(\d{4})(?!.)/;
-    const REGEX_PASSWORD = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{5,}$/;
+    const REGEX_PASSWORD = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)[A-Za-z\d]{5,}$/;
 
     function onFormSubmit() {
         
@@ -28,15 +30,22 @@ export default function RegistrationPart2 (props) {
         setUsername_HelpText(helpMessage_Username);
     }
 
+    // Return the value inside the input field when the user types so we can we it later to confirme the password
     function onPasswordChange(e) {
-        let helpMessage_Password = (!e.target.value.match(REGEX_PASSWORD))? "5 chars min 1 Up 1 Lo 1 char min" :  " ";
+        let helpMessage_Password = (!e.target.value.match(REGEX_PASSWORD))? "5 chars min 20 Max and at least 1 Uppercase 1 Lowercase 1 digit" :  " ";
         setPassword_HelpText(helpMessage_Password);
+        set_Password(e.target.value); // For the second password
+    }
+
+    function onPasswordChange2(e) {
+        let helpMessage_ConfirmPassword = (e.target.value !==  password)? "Password must matches the previous": " ";
+        setConfirmPassword_HelpText(helpMessage_ConfirmPassword);
     }
 
     function onPhoneNumberChange(e) {
         let helpMessage_Phone =  (!e.target.value.match(REGEX_PHONE_NUMBER) &&
                                      e.target.value.length > 0 ) ? 
-                                                "Please enter a valid phone Number" : " "
+                                                "Please enter a valid phone Number" : " ";
         setPhoneNumber_HelpText(helpMessage_Phone);
     }
 
@@ -62,7 +71,7 @@ export default function RegistrationPart2 (props) {
                     <div className="column">
                         <label className="label">Password</label>
                         <div className="control has-icons-right">
-                            <input className="input" type="password" placeholder="Password" />
+                            <input className="input" type="password" placeholder="Password" onChange={onPasswordChange} />
                             <span className="icon is-small is-right">
                                 <i className="fa fa-check"></i>
                             </span>
@@ -72,7 +81,7 @@ export default function RegistrationPart2 (props) {
                     <div className="column">
                         <label className="label">Confirm Password</label>
                         <div className="control has-icons-right">
-                            <input className="input" type="password" />
+                            <input className="input" type="password" onChange={onPasswordChange2}/>
                             <span className="icon is-small is-right">
                                 <i className="fa fa-check"></i>
                             </span> 
