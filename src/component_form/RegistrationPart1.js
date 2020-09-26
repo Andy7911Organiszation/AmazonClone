@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import { isExists , isDate } from 'date-fns';
+import moment from 'moment';
+import React, { useEffect, useState } from 'react';
 
 import { Link } from 'react-router-dom';
 
@@ -10,6 +12,10 @@ export default function RegistrationPart1 (props) {
     const [lastName_HelpText,setLastName_HelpText] = useState(" ");
     const [emailAdress_HelpText,setEmailAdress_HelpText] = useState(" ");
     const [birthday_HelpText,setBirthday_HelpText] = useState(" ");
+
+    const [month,set_Month] = useState();
+    const [day,set_Day] = useState();
+    const [year, set_Year] = useState();
 
     const REGEX_NAME = /^[a-zA-Z]+$/;
     const REGEX_EMAILADRESS = /[a-zA-Z0-9-_]{2,30}[@]{1}[a-z]{3,20}[.]{1}[a-z]{0,4}/;
@@ -29,6 +35,68 @@ export default function RegistrationPart1 (props) {
         setEmailAdress_HelpText(help_MessageEmailAdress);
     }
 
+
+    function populateSelectYear () {
+        let years = [];
+        for (let i = new Date().getFullYear() ; i >= new Date().getFullYear() - 130; i --) {
+            years.push(i);
+        }
+        return years;
+    }
+
+    let listYearOfYear = populateSelectYear().map((value ,i) => {
+        return <option value={value}>{value}</option>;
+    })
+
+    function populateDays() {
+        let days = [];
+        for (let i = 1; i <= 31 ; i++ ) {
+            days.push(i);
+        }
+        return days;
+    }
+
+    let listDays = populateDays().map((value,i) => {
+        return <option value={value}>{value}</option>
+    })
+
+    function onYearChange(e) {
+        set_Year(e.target.value);
+    }
+
+    function onDayChange (e) { 
+        set_Day(e.target.value);
+    }
+
+    function onMonthChange (e) {
+        set_Month(e.target.value);
+    }
+
+
+    function is_BirthdayValid (day,month,year) {
+        // The method moment Js library Function
+        let returnValue = moment(year + "/" + month + "/" + day,"YYYY-MM-DD",false ).isValid();
+        let help_MessageBirthDay = (!returnValue) ? "Please Enter a Valid Birthday" : " ";
+        setBirthday_HelpText(help_MessageBirthDay);
+        return returnValue;
+    }
+
+
+    ///////////////////////////////////////////////
+    //            FORM VALIDATION
+    /////////////////////////////////////////////
+
+
+    function validateRegisterFormPart1() {
+       
+        if (!is_BirthdayValid(day,month,year)) 
+            return;
+
+        props.changeToSecondForm();
+    }
+
+
+    
     return (
         <div id="custom" className="is-ligth px-3">
                <div className="columns field">
@@ -67,37 +135,36 @@ export default function RegistrationPart1 (props) {
                     <div className="columns is-mobile">
                         <p className="control column">
                             <span className="select is-fullwidth" id="year">
-                                <select name="year">
+                                <select name="year" onChange={onYearChange}>
                                     <option value="" disabled selected hidden>Select Year</option>
-                                    <option value="">2020</option>
+                                    {listYearOfYear}
                                 </select>
                             </span>
                         </p>
                         <p className="control column">
                             <span className="select is-fullwidth" id="month">
-                                <select name="month">
+                                <select name="month" onChange={onMonthChange}>
                                     <option value="" disable selected hidden>Month</option>
-                                    <option value="January">January</option>
-                                    <option value="Febuary">Febuary</option>
-                                    <option value="March">March</option>
-                                    <option value="April">April</option>
-                                    <option value="May">May</option>
-                                    <option value="June">June</option>
-                                    <option value="July">July</option>
-                                    <option value="August">August</option>
-                                    <option value="September">September</option>
-                                    <option value="October">October</option>
-                                    <option value="November">November</option>
-                                    <option value="December">December</option>
+                                    <option value="01">January</option>
+                                    <option value="02">Febuary</option>
+                                    <option value="03">March</option>
+                                    <option value="04">April</option>
+                                    <option value="05">May</option>
+                                    <option value="06">June</option>
+                                    <option value="07">July</option>
+                                    <option value="08">August</option>
+                                    <option value="09">September</option>
+                                    <option value="10">October</option>
+                                    <option value="11">November</option>
+                                    <option value="12">December</option>
                                 </select>
                             </span>
                         </p>
                         <p className="control column ">
                             <span className="select is-fullwidth" id="day">
-                                <select name="day" >
+                                <select name="day"  onChange={onDayChange}>
                                     <option value="" disabled selected hidden>Day</option>
-                                    <option value=""></option>
-                                    <option value=""></option>
+                                    {listDays}
                                 </select>
                             </span>
                         </p>
@@ -111,7 +178,7 @@ export default function RegistrationPart1 (props) {
                             Cancel
                         </a>    
                     </p>
-                    <p id="btn_next" className="control column" onClick={props.changeToSecondForm}>
+                    <p id="btn_next" className="control column" onClick={validateRegisterFormPart1}>
                         <a className="button is-primary has-icons-right is-fullwidth">
                             Next
                         </a>

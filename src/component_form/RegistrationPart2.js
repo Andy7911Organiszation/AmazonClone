@@ -1,3 +1,4 @@
+import { set } from 'date-fns';
 import React, {useState} from 'react';
 
 export default function RegistrationPart2 (props) {
@@ -8,6 +9,7 @@ export default function RegistrationPart2 (props) {
     const [password_HelpText,setPassword_HelpText] = useState(" ");
     const [confirmPassword_HelpText, setConfirmPassword_HelpText] = useState(" ");
     const [address_HelpText,setAdress_HelpText] = useState(" ");
+    const [termsAndCondition_HelpText,setTermsAndConditions_HelpText] = useState(" ");
     const [is_TermsAndConditionsAccepted, set_IsTermsAndCondidtionsAccepted] = useState(false);
 
     const [password, set_Password] = useState("");
@@ -17,12 +19,13 @@ export default function RegistrationPart2 (props) {
     const REGEX_PASSWORD = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)[A-Za-z\d]{5,}$/;
 
     function onFormSubmit() {
-        
+       if (!checkis_TermsAndConditionsAccepted()) return;
     }
 
     function checkis_TermsAndConditionsAccepted () {
-        set_IsTermsAndCondidtionsAccepted(value => !value);
         let helpMessage_AcceptTermsAndConditions = (!is_TermsAndConditionsAccepted) ? "Please accept terms and Conditions" : " ";
+        setTermsAndConditions_HelpText(helpMessage_AcceptTermsAndConditions);
+        return is_TermsAndConditionsAccepted;
     }
 
     function onUserNameChange (e) {
@@ -55,14 +58,14 @@ export default function RegistrationPart2 (props) {
                     <div className="column">
                         <label className="label">Username</label>
                         <div className="control">
-                            <input type="text" className="input" placeholder="Input Username" onChange={onUserNameChange}/>
+                            <input type="text" name="username" className="input" placeholder="Input Username" onChange={onUserNameChange}/>
                         </div>
                         <p className="help pl-1 errorMessage">{username_HelpText}</p>
                     </div>
                     <div className="column">
                         <label className="label">Phone Number (optional)</label>
                         <div className="control">
-                            <input type="text" className="input" placeholder="(514)-333-3333" onChange={onPhoneNumberChange}/>
+                            <input type="text" name="phoneNumber" className="input" placeholder="(514)-333-3333" onChange={onPhoneNumberChange}/>
                         </div>
                         <p className="help pl-1 errorMessage">{phoneNumber_HelpText}</p>
                     </div>
@@ -71,7 +74,7 @@ export default function RegistrationPart2 (props) {
                     <div className="column">
                         <label className="label">Password</label>
                         <div className="control has-icons-right">
-                            <input className="input" type="password" placeholder="Password" onChange={onPasswordChange} />
+                            <input className="input" name="password" type="password" placeholder="Password" onChange={onPasswordChange} />
                             <span className="icon is-small is-right">
                                 <i className="fa fa-check"></i>
                             </span>
@@ -81,7 +84,7 @@ export default function RegistrationPart2 (props) {
                     <div className="column">
                         <label className="label">Confirm Password</label>
                         <div className="control has-icons-right">
-                            <input className="input" type="password" onChange={onPasswordChange2}/>
+                            <input className="input" name="password2" type="password" onChange={onPasswordChange2}/>
                             <span className="icon is-small is-right">
                                 <i className="fa fa-check"></i>
                             </span> 
@@ -91,9 +94,9 @@ export default function RegistrationPart2 (props) {
                 </div>
                 <div className="columns field">
                     <div className="column">
-                        <label className="label has-text-centered">Adress</label>
+                        <label className="label has-text-centered">Adress (optional)</label>
                         <div className="control has-icons-left">
-                            <input className="input" type="text" placeholder="3800 Sherbrooke St E, Montreal, Quebec H1X 2A2" />
+                            <input className="input" name="adress" type="text" placeholder="3800 Sherbrooke St E, Montreal, Quebec H1X 2A2" />
                             <span className="icon is-small is-left">
                                 <i className="fa fa-home"></i>
                             </span>
@@ -103,12 +106,12 @@ export default function RegistrationPart2 (props) {
                 </div>
                 <div className="columns">
                     <div className="column">
-                        <label className="checkbox">
-                            <input className="mr-2" type="checkbox" checked={is_TermsAndConditionsAccepted} />
+                        <label htmlFor="is_termsAndConditions" className="checkbox" onClick={() => {set_IsTermsAndCondidtionsAccepted(value =>!value)}} >
+                            <input className="mr-2" id="is_termsAndConditions" name="is_termsAndConditions" type="checkbox" defaultChecked={is_TermsAndConditionsAccepted}/>
                             I agree to the <a href="#">terms and conditions</a>
                         </label>
                     </div>
-                    <p className="help p1-1 errorMessage">{is_TermsAndConditionsAccepted}</p>
+                    <p className="help p1-1 errorMessage">{termsAndCondition_HelpText}</p>
                 </div>
                 <div id="buttons" className="field has-addons pt-4 columns">
                     <p className="control column" onClick={props.changeToFirstForm}>
