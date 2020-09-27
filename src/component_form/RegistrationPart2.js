@@ -20,10 +20,11 @@ export default function RegistrationPart2 (props) {
 
     function onFormSubmit() {
        if (!checkis_TermsAndConditionsAccepted()) return;
+       
     }
 
     function checkis_TermsAndConditionsAccepted () {
-        let helpMessage_AcceptTermsAndConditions = (!is_TermsAndConditionsAccepted) ? "Please accept terms and Conditions" : " ";
+        let helpMessage_AcceptTermsAndConditions = (!is_TermsAndConditionsAccepted) ? "Please accept the terms and Conditions" : " ";
         setTermsAndConditions_HelpText(helpMessage_AcceptTermsAndConditions);
         return is_TermsAndConditionsAccepted;
     }
@@ -106,12 +107,16 @@ export default function RegistrationPart2 (props) {
                 </div>
                 <div className="columns">
                     <div className="column">
-                        <label htmlFor="is_termsAndConditions" className="checkbox" onClick={() => {set_IsTermsAndCondidtionsAccepted(value =>!value)}} >
-                            <input className="mr-2" id="is_termsAndConditions" name="is_termsAndConditions" type="checkbox" defaultChecked={is_TermsAndConditionsAccepted}/>
+                        <label htmlFor="is_termsAndConditions" className="checkbox" onChange={() => set_IsTermsAndCondidtionsAccepted(value =>!value)} >
+                            <input className="mr-2" id="is_termsAndConditions" name="is_termsAndConditions" type="checkbox" />
                             I agree to the <a href="#">terms and conditions</a>
                         </label>
                     </div>
-                    <p className="help p1-1 errorMessage">{termsAndCondition_HelpText}</p>
+                </div>
+                <div className="columns">
+                    <div className="container is-full">
+                        <p className="help p1-1 errorMessage has-text-centered">{termsAndCondition_HelpText}</p>
+                    </div>
                 </div>
                 <div id="buttons" className="field has-addons pt-4 columns">
                     <p className="control column" onClick={props.changeToFirstForm}>
