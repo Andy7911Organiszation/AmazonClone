@@ -7,6 +7,7 @@ import Footer from './component/Footer';
 // Pages
 import Login_Page from './component-FullPage/Login_Page';
 import Registration_Page from './component-FullPage/Registration_Page';
+import DetailPageProduct from './component/DetailPageProduct';
 
 
 // React routing for 
@@ -29,6 +30,9 @@ function App() {
           </Route>
           <Route path="/Login" exact>
             <Login_Page />
+          </Route>
+          <Route path="/Apercus" exact>
+            <DetailPageProduct />
           </Route>
           <Route path="/Register" exact>
             <Registration_Page />
