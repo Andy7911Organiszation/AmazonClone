@@ -1,10 +1,25 @@
-import React, { Component } from 'react'
+import React, { Component,useState } from 'react'
 import imgAmazon from '../img/amazon.PNG';
 
 import { Link } from 'react-router-dom';
+import Axios from 'axios';
 
 export default class Nav extends Component {
+
+  state={ arrayCategorie:[] }
+  
+  componentDidMount()
+  {
+    Axios.get('http://127.0.0.1:8000/api/Categorie').then(res=>{
+
+    const catego = this.setState({arrayCategorie:res.data});
+     console.log(res.data);
+
+    })
+
+  }
     render() {
+   const catego=  this.state.arrayCategorie.map(categorie=>{return <option key={categorie.id}>{categorie.nom}</option>})
         return (
             <div>
               <nav className="navbar" role="navigation" aria-label="main navigation">
@@ -28,8 +43,7 @@ export default class Nav extends Component {
                       <span className="select">
                         <select>
                           <option>All</option>
-                          <option>£</option>
-                          <option>€</option>
+                         {catego}
                         </select>
                       </span>
                     </p>
