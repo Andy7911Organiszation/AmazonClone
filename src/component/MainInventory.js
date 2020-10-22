@@ -15,7 +15,11 @@ export class MainInventory extends Component {
 
         render() {
                
-                    const listproduct = this.state.arrayProduct.map(product=>{return<div key={product.id}  className="column is-one-quarter"><img src={product.source}  ></img><a  className='button is-small is-fullwidth' >Aperçus </a></div>});
+            const listproduct = this.state.arrayProduct.map(product=>
+                {return<div key={product.id}  className="column has-text-centered is-one-quarter">
+                          <img src={product.source}  ></img>
+                          <a href='/Apercus' className='button is-small is-fullwidth' >Aperçus </a>
+                        </div>});
         
         return (
             <div >
