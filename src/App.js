@@ -31,7 +31,7 @@ function App() {
           <Route path="/Login" exact>
             <Login_Page />
           </Route>
-          <Route path="/Apercus" exact>
+          <Route path="/Apercus" exact> {/*Apercus:id  Entrer un parametre pour chercher le id*/}
             <DetailPageProduct />
           </Route>
           <Route path="/Register" exact>
