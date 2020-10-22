@@ -8,7 +8,8 @@ import { faPlay,faCartPlus,faLock,faMapMarker } from '@fortawesome/free-solid-sv
 
 export default class DetailPageProduct extends Component {
      state={
-                file:'http://placehold.it/500x500'
+                file:'http://placehold.it/500x500',
+                stock:'En Stock'
             }  
             
             overImage = (event) =>{
@@ -26,20 +27,20 @@ export default class DetailPageProduct extends Component {
                 <Nav></Nav>
                 <div className ='columns'>
                     <div className='column is-1 '>
-                        <img src="https://i.ibb.co/L5Lp1Tx/aspirateur.png" className='is-hovered' style={{width:100,height:100, border:''}} alt='imagefacade' onMouseOver={event=>this.overImage(event)} ></img> 
+                        <img src="https://i.ibb.co/L5Lp1Tx/aspirateur.png" className='is-gray-border' style={{width:100,height:100, }} alt='imagefacade' onMouseOver={event=>this.overImage(event)} ></img> 
                  
                     </div>
                     <div className='column is-1'>
-                        <img src="https://i.ibb.co/hWcs30T/robot-Culinaire.png"  style={{width:100,height:100}} alt='imagefacade' onMouseOver={event=>this.overImage(event)}></img> 
+                        <img src="https://i.ibb.co/hWcs30T/robot-Culinaire.png" className='is-gray-border'  style={{width:100,height:100}} alt='imagefacade' onMouseOver={event=>this.overImage(event)}></img> 
                     </div>
                     <div className='column is-1' >
                  
-                        <img src="https://i.ibb.co/92GYz9h/bbq.png" style={{width:100,height:100}} alt='imagefacade' onMouseOver={event=>this.overImage(event)}></img>
+                        <img src="https://i.ibb.co/92GYz9h/bbq.png"  className='is-gray-border' style={{width:100,height:100}} alt='imagefacade' onMouseOver={event=>this.overImage(event)}></img>
                     </div>
              
-
+ 
                 </div>
-                <div className='columns is-5'>
+                <div className='columns is-3'>
                     <div className='column'>
                         <img src={this.state.file} style={{width:'400px',height:'400px'}}> 
 
@@ -56,15 +57,17 @@ export default class DetailPageProduct extends Component {
                         </p>
 
                     </div>
-                    <div className='column is-2'>
-                        <div className='box'>
+                    <div className='column is-2 pl-2'>
+                        <div >
                         <div className='columns is-desktop is-vcentered'>
                         <div className='column is-12 p-4'>
                         
                             <div className='card has-text-centered is-wide' >
                              <div className=''>
-                              <p>1800$ et livraison gratruite</p> 
-                              <p>Seulement 10 en stock</p> 
+                             <p className='has-text-weight-semibold pb-6'>Souhaitez-vous protéger votre achat? Vérifiez que cette assurance couvre vos besoins:</p>
+                              <p >1800$ et livraison gratruite</p> 
+                              <p className="pb-4">Seulement 10 en stock</p> 
+                              <p className='has-text-primary'>{this.state.stock}</p>
                               Quantité:
                                     <div class="select is-small">
                                         <select>
@@ -73,23 +76,44 @@ export default class DetailPageProduct extends Component {
                                         </select>
                                     </div>
                                   
-                                   <button className='button gold is-small is-fullwidth'><FontAwesomeIcon icon={faCartPlus}/> Ajouter au Panier</button>
-                                   <button className='button gold is-small is-fullwidth'><FontAwesomeIcon icon={faPlay}/>Acheter Maintenant</button>
-                                   <p><FontAwesomeIcon icon={faLock}/>Trasaction sécuritaire </p>
+                                   <button className='button gold is-normal is-outlined mb-2 mt-4' style={{width:'80%'}}><FontAwesomeIcon transform="grow-7 left-30.5 up-2.2" icon={faCartPlus}/> Ajouter au Panier</button>
+                                   <button className='button gold is-normal is-fullwidth pl-3' ><FontAwesomeIcon  icon={faPlay}/>Acheter Maintenant</button>
+                                   <p><FontAwesomeIcon  icon={faLock}/> &nbsp; Trasaction sécuritaire </p>
                                    <hr className='black'/>
-                                   <p> <FontAwesomeIcon icon={faMapMarker}/> Livre a Beaudois Montreal Qc </p>
-                                   <button className='buttton is-light is-small'>Ajouter a la liste d'envie</button>
+                                   <p> <FontAwesomeIcon icon={faMapMarker}/> &nbsp; Livre a Beaudois Montreal Qc </p>
+                                   <button className='buttton is-light is-small'> Ajouter a la liste d'envie</button>
                             </div>
 
                             </div>
+
+                          
                             <div>
 
                             </div>
                             </div>
                         </div>
                         </div>
+                        {/*ending Block*/}
+                        <div className='pt-4'> 
+                        
+                         <div className='card'>
+                                <div className='card-header-title is-centered'>
+                                    <p >Autre Vendeur sur Amazon </p>
+                                </div>
+                                <hr className='black'></hr>
+                                <div className='card-content'>
+                                    <div className='has-text-right'>
+                                         35,77$ <button className='button gold is-small' >Ajouter au panier</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
 
                     </div>
+                    <div className='column'></div>
+
+                    
 
                 </div>
                 <Footer></Footer>
