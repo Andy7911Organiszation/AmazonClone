@@ -1,4 +1,3 @@
-import { isExists , isDate } from 'date-fns';
 import moment from 'moment';
 import React, { useEffect, useState } from 'react';
 
@@ -13,6 +12,11 @@ export default function RegistrationPart1 (props) {
     const [emailAdress_HelpText,setEmailAdress_HelpText] = useState(" ");
     const [birthday_HelpText,setBirthday_HelpText] = useState(" ");
 
+    const [is_firstNameValid, set_IsFirstNameValid] = useState(false);
+    const [is_lastNameValid, set_IsLastNameValid] = useState(false);
+    const [is_emailAdressValid,set_IsEmailAdressValid] = useState(false);
+    // const [is_birthdaySetAndValid, set_IsBirthdaySetValid] = useState(false);  Not Needed
+
     const [month,set_Month] = useState();
     const [day,set_Day] = useState();
     const [year, set_Year] = useState();
@@ -21,20 +25,36 @@ export default function RegistrationPart1 (props) {
     const REGEX_EMAILADRESS = /[a-zA-Z0-9-_]{2,30}[@]{1}[a-z]{3,20}[.]{1}[a-z]{0,4}/;
 
     function onFirstNameChange(e) {
-        let help_MessageFirstName = (!e.target.value.match(REGEX_NAME))? "Please Enter a Valid  First Name !!!" : " ";
+        // Set ErrorMessage for onchange
+        let is_help_MessageFirstNameShown = (!e.target.value.match(REGEX_NAME))? true : false;
+        let help_MessageFirstName = (is_help_MessageFirstNameShown) ? "Please Enter a Valid First Name !!!" : " "; 
         setFirstName_HelpText(help_MessageFirstName);
+
+        // Value for when the user presseed Next Button
+        set_IsFirstNameValid(!is_help_MessageFirstNameShown);
     }
 
     function onLastNameChange(e) {
-        let help_MessageLastName = (!e.target.value.match(REGEX_NAME)) ? "Please Enter a Valid Last Name !!!": " ";
+        let is_help_MessageLastNameShown = (!e.target.value.match(REGEX_NAME)) ? true: false;
+        let help_MessageLastName = (is_help_MessageLastNameShown) ? "Please Enter a Valid Last Name !!!": " ";
         setLastName_HelpText(help_MessageLastName);
+
+        // Value for when the user presses the Next Button
+        set_IsLastNameValid(!is_help_MessageLastNameShown);
     }
 
     function onEmailAdressChange(e) {
-        let help_MessageEmailAdress = (!e.target.value.match(REGEX_EMAILADRESS)) ? "Please Enter a Valid Email Adress !!!" : " ";
+        let is_help_MessageEmailAdressShown = (!e.target.value.match(REGEX_EMAILADRESS)) ? true : false;
+        let help_MessageEmailAdress = (is_help_MessageEmailAdressShown) ? "Please Enter a Valid Email Adress !!!" : " ";
         setEmailAdress_HelpText(help_MessageEmailAdress);
+
+        // Value for when the user pressed the Next Button
+        set_IsEmailAdressValid(!is_help_MessageEmailAdressShown);
     }
 
+    //
+    // Birthday Functions
+    //
 
     function populateSelectYear () {
         let years = [];
@@ -72,31 +92,69 @@ export default function RegistrationPart1 (props) {
         set_Month(e.target.value);
     }
 
-
     function is_BirthdayValid (day,month,year) {
         // The method moment Js library Function
-        let returnValue = moment(year + "/" + month + "/" + day,"YYYY-MM-DD",false ).isValid();
+        let returnValue = moment(year + "/" + month + "/" + day,"YYYY/MM/DD", true).isValid();
         let help_MessageBirthDay = (!returnValue) ? "Please Enter a Valid Birthday" : " ";
         setBirthday_HelpText(help_MessageBirthDay);
         return returnValue;
     }
 
+    //
+    function check_IsFirstNameValid() {
+
+        if (!is_firstNameValid) {
+            setFirstName_HelpText("** Please Enter a Valid First Name !!! **");
+            return false;
+        }
+
+        return true;
+    }
+
+    function check_IsLastNameValid() {
+        if (!is_lastNameValid) {
+            setLastName_HelpText("** Please Enter a Valid Last Name !!! **");
+            return false;
+        }
+        return true;
+    }
+
+    function check_IsEmailAddressValid() {
+        if(!is_emailAdressValid) {
+            setEmailAdress_HelpText("** Please Enter a Valid Email Adress !!! ** ");
+            return false;
+        }
+        return true;
+    }
 
     ///////////////////////////////////////////////
-    //            FORM VALIDATION
+    //            FORM VALIDATION               //
     /////////////////////////////////////////////
 
+    // Checks all inputs and send an errorMessage if the form is not fill correctly
 
     function validateRegisterFormPart1() {
-       
-        if (!is_BirthdayValid(day,month,year)) 
-            return;
+        console.log("OnClick Event ")
+        let array_isFormFieldsWellFill = [];
 
+        array_isFormFieldsWellFill.push( is_BirthdayValid(day,month,year) );
+        array_isFormFieldsWellFill.push( check_IsFirstNameValid() );
+        array_isFormFieldsWellFill.push( check_IsLastNameValid() );
+        array_isFormFieldsWellFill.push( check_IsEmailAddressValid() );
+
+        let is_formPart1WellFill = !array_isFormFieldsWellFill.includes(false);
+
+        // If the form is not well fill, then we return with errorMessages
+        console.log(array_isFormFieldsWellFill);
+        console.log(is_formPart1WellFill);
+
+        if (!is_formPart1WellFill) {
+            return;
+        }
+        
         props.changeToSecondForm();
     }
 
-
-    
     return (
         <div id="custom" className="is-ligth px-3">
                <div className="columns field">
