@@ -1,5 +1,5 @@
 import moment from 'moment';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import { Link } from 'react-router-dom';
 
@@ -20,6 +20,8 @@ export default function RegistrationPart1 (props) {
     const [month,set_Month] = useState();
     const [day,set_Day] = useState();
     const [year, set_Year] = useState();
+
+    const registerPart1Ref = useRef();
 
     const REGEX_NAME = /^[a-zA-Z]+$/;
     const REGEX_EMAILADRESS = /[a-zA-Z0-9-_]{2,30}[@]{1}[a-z]{3,20}[.]{1}[a-z]{0,4}/;
@@ -126,15 +128,22 @@ export default function RegistrationPart1 (props) {
         }
         return true;
     }
-
+    
     ///////////////////////////////////////////////
     //            FORM VALIDATION               //
     /////////////////////////////////////////////
 
     // Checks all inputs and send an errorMessage if the form is not fill correctly
 
+    useEffect( () => {
+
+        props.passChildData(registerPart1Ref);
+    }, [registerPart1Ref])
+
+    
     function validateRegisterFormPart1() {
-        console.log("OnClick Event ")
+        console.log("OnClick Event ");
+        console.log(registerPart1Ref + "... Reference");
         let array_isFormFieldsWellFill = [];
 
         array_isFormFieldsWellFill.push( is_BirthdayValid(day,month,year) );
@@ -151,12 +160,23 @@ export default function RegistrationPart1 (props) {
         if (!is_formPart1WellFill) {
             return;
         }
-        
+        // Pass value to make RegisterPart1 invisible
+        props.passChildData(registerPart1Ref);
+        console.log(registerPart1Ref + "... Reference");
+
         props.changeToSecondForm();
     }
 
+    ////////////////////////////////
+    ///   Getting the <div id="custom" /> reference
+    /////////////////////////////
+
+    function returnRegisterPart1Ref() {
+        props.passChildData(registerPart1Ref);
+    }
+
     return (
-        <div id="custom" className="is-ligth px-3">
+        <div id="custom" ref={registerPart1Ref} className="is-ligth px-3">
                <div className="columns field">
                     <div className="column">
                         <label className="label">First Name</label>

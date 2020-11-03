@@ -1,7 +1,4 @@
-import React, {useState} from 'react';
-
-import { FontAwesome } from '@fortawesome/fontawesome-free';
-import { Link } from 'react-router-dom';
+import React, {useRef, useState} from 'react';
 
 import RegistrationPart1 from '../component_form/RegistrationPart1';
 import RegistrationPart2 from '../component_form/RegistrationPart2';
@@ -12,6 +9,9 @@ export default function Registration_Page () {
     const [is_firstFormSectionVisible, set_isFirstFormSectionVisible] = useState(true);
     const [is_secondFormSectionVisible, set_isSecondFormSectionVisible] = useState(false);
 
+    const [registerFormPart1, set_registerFormPart1] = useState();
+    const [registerFormPart2, set_registerFormPart2]= useState();
+
     const [firstName,setFirstName] = useState();
     const [lastName,setLastName] = useState();
     const [emailAdress,setEmailAdress] = useState();
@@ -21,22 +21,24 @@ export default function Registration_Page () {
     const REGEX_EMAIL = /[a-zA-Z]{4,}[@]{1}[a-z]{1,20}[.]{1}[a-z][2,10]/
     const REGEX_PASSWORD = null;
     function changeRegisterFormToSecondPage () {
-        // Validate Entry first before changing to second Form
-
-        set_isFirstFormSectionVisible(false);
-        set_isSecondFormSectionVisible(true);
-        console.log("Change form to first Page");
+        // Entry is validate by the RegisterFormPart1
+        //console.log(registerFormPart1);
+        //console.log(registerFormPart1.current);
+        
+        // Make the RegisterPart1 Invisible
+        registerFormPart1.current.style.display = 'none';
+        // Make the RegisterPart2 Visible
+        registerFormPart2.current.style.display = 'block';
     }
 
     function changeRegisterFormToFirstPage() {
-        set_isFirstFormSectionVisible(true);
-        set_isSecondFormSectionVisible(false);
-        console.log("Changing form to first page")
+        // Make the RegisterPart2 Invisible 
+        registerFormPart2.current.style.display = 'none';
+        // Make the RegisterPart1 Visible
+        registerFormPart1.current.style.display = 'block';
     }
 
-    function validateFormFirstSection() {
-        
-    }
+    
 
 
     
@@ -45,30 +47,24 @@ export default function Registration_Page () {
     return (
         <section id="form-section">
             
-        <form  className="column is-6 is-offset-3 px-0 pt-0 pb-5">
+        <form className="column is-6 is-offset-3 px-0 pt-0 pb-5">
             <div className="field pb-5">
                 <h1 className="title is-3 has-background-primary is-large c-center">Register</h1>
             </div>
-            {/*
-              Setting which form section is visible 
-                Ternany Operator 
-                const componentToRender =  (is_firstFormSectionVisiblle) ? <RegistrationPart1 /> : null
-             */}
-            {
-                is_firstFormSectionVisible ?  
-                    <RegistrationPart1 
-                        changeToSecondForm={changeRegisterFormToSecondPage} 
-                    /> 
-                        : null
-            }
-            {
-                is_secondFormSectionVisible? 
-                    <RegistrationPart2 
-                        changeToFirstForm= {changeRegisterFormToFirstPage}
-                        onSubmitSecondForm= {() => null} 
-                    />
-                        : null
-            }
+            
+            <RegistrationPart1 
+                changeToSecondForm={changeRegisterFormToSecondPage}
+                passChildData={set_registerFormPart1}
+                
+            /> 
+                       
+            <RegistrationPart2 
+                changeToFirstForm= {changeRegisterFormToFirstPage}
+                passChildData={set_registerFormPart2}
+                onSubmitSecondForm= {() => null} 
+            />
+                      
+            
         </form>
                     
     </section>
