@@ -3,7 +3,8 @@ import imgAmazon from '../img/amazon.PNG';
 
 import { Link } from 'react-router-dom';
 import Axios from 'axios';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {faCartPlus} from '@fortawesome/free-solid-svg-icons'
 export default class Nav extends Component {
 
   state={ arrayCategorie:[] }
@@ -77,10 +78,15 @@ export default class Nav extends Component {
                       <li className="navbar-item">
                         <Link to="/Login">Login</Link>
                       </li>
+                      <li className="navbar-item">
+                        <Link to='/panier'>Panier<FontAwesomeIcon icon={faCartPlus} transform='grow-6 up-4 right-10'></FontAwesomeIcon> </Link>
+                       
+                      </li>
+                     {/*<li><div className='cercle is-size-4'>2</div></li>*/}
 
                     </ul>
                   </div>
-                
+              
                 </div>
                 
               </nav> 

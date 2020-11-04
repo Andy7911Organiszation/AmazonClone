@@ -36,3 +36,30 @@
     transform: rotate(360deg);
   }
 }
+.gold{
+
+  background-color:#f2cc6b;
+}
+.black{
+  background-color: black;
+}
+.is-noBorder{
+  border:none;
+}
+.is-blueNavie{
+  background-color: #232f3e;
+}
+.is-gray-border{
+  border:solid darkgray 2px;
+ 
+
+}
+.cercle{
+
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  background: yellow;
+  text-align: center;
+
+}
