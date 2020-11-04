@@ -35,10 +35,13 @@ export default function RegistrationPart2 (props) {
         let array_IsFormPart2FillCorrectly = [];  
         
         // Boolean functions inside array 
-        array_IsFormPart2FillCorrectly.push( !checkis_TermsAndConditionsAccepted() );
+        array_IsFormPart2FillCorrectly.push( checkis_TermsAndConditionsAccepted() );
         array_IsFormPart2FillCorrectly.push( check_ifUserNameValid() );
         array_IsFormPart2FillCorrectly.push( check_ifPasswordValid() );
         array_IsFormPart2FillCorrectly.push( check_ifPassword2Valid() );
+
+        //phone number and address is optional for now
+        
 
         let is_formPart2WellFill = !array_IsFormPart2FillCorrectly.includes(false);
         
@@ -46,7 +49,7 @@ export default function RegistrationPart2 (props) {
             return;
         }
         
-
+        console.log("success");
         //submit function here
     }
 

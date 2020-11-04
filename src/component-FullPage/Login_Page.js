@@ -39,7 +39,7 @@ export default class Login_Page extends Component {
             
             <form  id='myform'className="column is-6 is-offset-3 px-0 pt-0 pb-5" >
                 <div className="field pb-5">
-                    <h1 className="title is-3 has-background-primary is-large c-center">Login</h1>
+                    <h1 id="h1" className="title is-3 has-background-primary is-large c-center">Login</h1>
                 </div>
     
                 <div id="custom" className="is-ligth px-3">
