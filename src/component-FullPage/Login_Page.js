@@ -5,14 +5,16 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import apiClient from '../services/api';
 
+import authContexte from '../contexte/authContexte';
+
 // This function is render without a navbar
 export default class Login_Page extends Component {
-      
-        state={
-            email:'',
-            password:''
+      state={
 
-        }
+        email:'',
+        password:'',
+        auth:false
+      }
         
          handlelogin=(e)=>{
             
@@ -29,12 +31,16 @@ export default class Login_Page extends Component {
                   email:data.get('email'),
                   password:data.get('password')
                 
-              }).then(response=>console.log(response))
+              }).then(response=>{
+
+                this.setState({auth:true});
+              }).catch(err=> console.log(err))
               )
             }
         render(){
            
         return (
+            <authContexte.Provider auth={this.state.auth}>
             <section id="form-section">
             
             <form  id='myform'className="column is-6 is-offset-3 px-0 pt-0 pb-5" >
@@ -91,6 +97,7 @@ export default class Login_Page extends Component {
             </form>
                         
         </section>
+        </authContexte.Provider>
         );
     }
     }
