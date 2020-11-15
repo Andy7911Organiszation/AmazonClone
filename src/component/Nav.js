@@ -7,8 +7,35 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faCartPlus} from '@fortawesome/free-solid-svg-icons'
 export default class Nav extends Component {
 
-  state={ arrayCategorie:[] }
+  state={ 
+    arrayCategorie:[],
+    is_navbarBarTopToggle_ForMobileDevice: false
+  }
+
+  navbarBarTopToggleRef = React.createRef();
+  navbarBarRef = React.createRef();
   
+  handleToggle = () => {
+    this.setState( (state) => {
+      return { is_navbarBarTopToggle_ForMobileDevice: !state.is_navbarBarTopToggle_ForMobileDevice}
+    });
+
+    
+    if (this.state.is_navbarBarTopToggle_ForMobileDevice != true) {
+      // Add the is-active class to the navbarToggler 
+      // the is-active class changes the hamburger icon to a cross 
+      this.navbarBarTopToggleRef.current.classList.add("is-active");
+      this.navbarBarRef.current.classList.add("is-active");
+      
+    } else {
+      // remove the is-active class from the navbar toggler
+      this.navbarBarTopToggleRef.current.classList.remove("is-active");
+      this.navbarBarRef.current.classList.remove("is-active");
+      
+    }
+
+  }
+
   componentDidMount()
   {
     Axios.get('http://127.0.0.1:8000/api/Categorie').then(res=>{
@@ -17,6 +44,7 @@ export default class Nav extends Component {
      console.log(res.data);
 
     })
+    // Getting the navbar toggle reference for updating the t
 
   }
     render() {
@@ -29,14 +57,14 @@ export default class Nav extends Component {
                     <img src={imgAmazon} width="112" height="28"/>
                   </a>
 
-                  <a role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                  <a role="button" ref={this.navbarBarTopToggleRef} onClick={this.handleToggle} className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
                     <span aria-hidden="true"></span>
                     <span aria-hidden="true"></span>
                     <span aria-hidden="true"></span>
                   </a>
                 </div>
 
-                <div id="navbarBasicExample" className="navbar-menu">
+                <div id="navbarBasicExample" ref={this.navbarBarRef}  className="navbar-menu">
                 
                 <div className="column is-two-fifths" >
                   <div className="field has-addons">
